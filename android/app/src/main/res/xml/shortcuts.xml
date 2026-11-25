@@ -1,0 +1,34 @@
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut android:shortcutId="remote" android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/sc_remote">
+        <intent android:action="com.rohandas.hyprhand_mobile.OPEN"
+            android:targetPackage="com.rohandas.hyprhand_mobile"
+            android:targetClass="com.rohandas.hyprhand_mobile.MainActivity">
+            <extra android:name="page" android:value="remote"/>
+        </intent>
+    </shortcut>
+    <shortcut android:shortcutId="audio" android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/sc_audio">
+        <intent android:action="com.rohandas.hyprhand_mobile.OPEN"
+            android:targetPackage="com.rohandas.hyprhand_mobile"
+            android:targetClass="com.rohandas.hyprhand_mobile.MainActivity">
+            <extra android:name="page" android:value="audio"/>
+        </intent>
+    </shortcut>
+    <shortcut android:shortcutId="commands" android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/sc_commands">
+        <intent android:action="com.rohandas.hyprhand_mobile.OPEN"
+            android:targetPackage="com.rohandas.hyprhand_mobile"
+            android:targetClass="com.rohandas.hyprhand_mobile.MainActivity">
+            <extra android:name="page" android:value="commands"/>
+        </intent>
+    </shortcut>
+    <shortcut android:shortcutId="screen" android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/sc_screen">
+        <intent android:action="com.rohandas.hyprhand_mobile.OPEN"
+            android:targetPackage="com.rohandas.hyprhand_mobile"
+            android:targetClass="com.rohandas.hyprhand_mobile.MainActivity">
+            <extra android:name="page" android:value="screen"/>
+        </intent>
+    </shortcut>
+</shortcuts>
