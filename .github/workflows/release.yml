@@ -29,6 +29,24 @@ jobs:
           v=$(grep '^version:' pubspec.yaml | sed 's/version: *//; s/+.*//')
           [ "v$v" = "$GITHUB_REF_NAME" ] || { echo "tag $GITHUB_REF_NAME != pubspec $v"; exit 1; }
 
+      - name: Set up release key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          for s in KEYSTORE_BASE64 KEYSTORE_PASSWORD KEY_ALIAS KEY_PASSWORD; do
+            [ -n "${!s}" ] || { echo "missing secret $s"; exit 1; }
+          done
+          echo "$KEYSTORE_BASE64" | base64 -d > android/release.jks
+          cat > android/key.properties <<PROPS
+          storeFile=release.jks
+          storePassword=$KEYSTORE_PASSWORD
+          keyAlias=$KEY_ALIAS
+          keyPassword=$KEY_PASSWORD
+          PROPS
+
       - run: flutter pub get
       - run: flutter test
 
