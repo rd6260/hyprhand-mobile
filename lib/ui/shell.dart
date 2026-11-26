@@ -10,6 +10,7 @@ import '../blocs/files_cubit.dart';
 import '../blocs/fleet_cubit.dart';
 import '../blocs/macro_bloc.dart';
 import '../blocs/nav_cubit.dart';
+import '../blocs/session_bloc.dart';
 import '../blocs/settings_cubit.dart';
 import '../blocs/theme_cubit.dart';
 import '../data/bindings.dart';
@@ -394,6 +395,17 @@ class _More extends StatelessWidget {
               icon: _icons[d],
               onTap: () => context.read<NavCubit>().go(d),
             ),
+          DeckButton(
+            'Log out',
+            icon: Icons.logout,
+            tone: Tone.danger,
+            onTap: () async {
+              final session = context.read<SessionBloc>();
+              if (await confirm(context, 'Log out of this rig?', 'Log out')) {
+                session.add(const LoggedOut());
+              }
+            },
+          ),
         ],
       );
     },
